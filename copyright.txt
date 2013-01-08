@@ -1,0 +1,6 @@
+All code authored by Kunal Kandekar (unless specified otherwise.)
+Copyright 2012 - 2013
+
+BSD License (Let me know if you need any other license.)
+
+<Insert BSD license text here>
