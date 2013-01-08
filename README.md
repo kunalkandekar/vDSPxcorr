@@ -45,7 +45,7 @@ Unless I've made a silly timing mistake somewhere -- please verify my TestXCorr
 class implementation! -- the speed-up is stupendous.
 
 Run on MacBook Pro 2.53 GHz Intel Core 2 Duo (4GB RAM, though it does not 
-matter here. Results in microseconds, averaged over runs with 100 reps each.
+matter here. Results in microseconds, averaged over 3 runs with 100 reps each.
 
     +-------+-------+------------+-----------+
     |   N1  |   N2  |  vDSP_conv | vDSPxcorr |
@@ -68,9 +68,9 @@ same as for N1=1024, N2=2048, which is 4096.
 
 However, for vDSP_conv, the "N" is essentially (N1 + N2). So even though the
 operations implemented in vDSP_conv are simple (multiply/add/shift) and very 
-fast and vectorized and all, the algorithmic complexity makes it much slower 
-than the FFT-based implementation (which, to be fair, internally also uses very
-fast, optimized, vectorized instructions for its FFT routines.)
+fast and vectorized and all, the N^2 algorithmic complexity makes it much slower
+than the N*LogN FFT-based implementation (which, to be fair, internally also 
+uses very fast, optimized, vectorized vDSP instructions for its FFT routines.)
 
 
 RAW DATA (CSV)
