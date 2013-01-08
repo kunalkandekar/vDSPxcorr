@@ -1,8 +1,6 @@
 vDSPxcorr
 =========
 
-- Kunal Kandekar
-
 High performance FFT-based cross-correlation for C/Objective-C/C++ on iOS and 
 OSX using the Accelerate framework.
 
