@@ -8,13 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TestXCorr : NSObject
+@interface TestXCorr : NSObject {
+    int     nSamples1;
+    long    seed1;
+    float   ampl1;
+    int     nSamples2;
+    long    seed2;
+    float   ampl2;
+    int     offset;
+    int     numReps;
+}
 
--(int) testXCorrNoAllocSampleLength1:(int)nSamples1 seed1:(long)seed1 amplitude1:(float)ampl1
-                           andLength2:(int)nSamples2 seed2:(long)seed2 amplitude2:(float)ampl2
-                             atOffset:(int)offset;
+@property (nonatomic) int     nSamples1;
+@property (nonatomic) long    seed1;
+@property (nonatomic) float   amplitude1;
+@property (nonatomic) int     nSamples2;
+@property (nonatomic) long    seed2;
+@property (nonatomic) float   amplitude2;
+@property (nonatomic) int     offset;
+@property (nonatomic) int     numReps;
 
--(int) testXCorrInternalAllocSampleLength1:(int)nSamples1 seed1:(long)seed1 amplitude1:(float)ampl1
-                                 andLength2:(int)nSamples2 seed2:(long)seed2 amplitude2:(float)ampl2
-                                   atOffset:(int)offset;
+
+-(int) testXCorrNoInternalAlloc;
+
+-(int) testXCorrWithInternalAlloc;
 @end

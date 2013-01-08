@@ -121,6 +121,7 @@ int xcr_prep_template(XCORR_REAL *xcorr, float *samples1, int nsamples1);
 int xcr_xcorr_template_with(XCORR_REAL *xcorr, float *samples2, int nsamples2, float *coeffs);
 
 // xcorr arbitrary samples using internal buffers
+// coeffs must be at least xcr_get_buf_size long
 int xcr_xcorr(XCORR_REAL *xcorr,
               float *samples1, int nsamples1,
               float *samples2, int nsamples2,
@@ -129,10 +130,16 @@ int xcr_xcorr(XCORR_REAL *xcorr,
 //int normalizedCrossCorrelateWithHaystack(float * x, int lx, float *c, int lc);
 
 // More efficient methods using pre-zeroed buffers and zero-copy
+// coeffs must be at least xcr_get_buf_size long
 int xcr_prep_samples(XCORR_REAL *xcorr,
                      float *samples1, int nsamples1,
                      float *bufr, float *bufi,
-                     bool conj, int zero);
+                     bool conj);
+
+int xcr_prep_samplesz(XCORR_REAL *xcorr,
+                      float *samples1, int nsamples1,
+                      float *bufr, float *bufi,
+                      bool conj, int zero);
 
 int xcr_xcorr_prepped(XCORR_REAL *xcorr,
                       float *bufnr, float *bufni,

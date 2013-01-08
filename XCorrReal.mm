@@ -45,8 +45,12 @@ int XCorrReal::preprocessTemplate(float *samples1, int nSamples1) {
     return xcr_prep_template(xcorr, samples1, nSamples1);
 }
 
+int XCorrReal::preprocessSamples(float *samples1, int nSamples1, float *bufr, float *bufi, bool conj) {
+    return xcr_prep_samples(xcorr, samples1, nSamples1, bufr, bufi, conj);
+}
+
 int XCorrReal::preprocessSamples(float *samples1, int nSamples1, float *bufr, float *bufi, bool conj, int zeroCopy) {
-    return xcr_prep_samples(xcorr, samples1, nSamples1, bufr, bufi, conj, zeroCopy);
+    return xcr_prep_samplesz(xcorr, samples1, nSamples1, bufr, bufi, conj, zeroCopy);
 }
 
 int XCorrReal::crossCorrelateTemplateWith(float *samples2, int nSamples2, float *coeffs) {

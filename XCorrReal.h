@@ -16,6 +16,7 @@
 class XCorrReal {
 private:
     XCORR_REAL *xcorr;
+
 public:
     XCorrReal(int nSamples1, int nSamples2,
               XCORR_REAL_PREALLOC preAlloc = XCORR_REAL_INTERNAL_ALLOC_NO,
@@ -44,8 +45,12 @@ public:
     // More efficient methods using pre-zeroed buffers and zero-copy
     int preprocessSamples(float *samples1, int nSamples1,
                           float *bufr, float *bufi,
+                          bool conj);
+    
+    int preprocessSamples(float *samples1, int nSamples1,
+                          float *bufr, float *bufi,
                           bool conj, int zero);
-
+    
     int crossCorrelatePreprocessed(float *bufnr, float *bufni,
                                    float *bufhr, float *bufhi,
                                    float *bufcr, float *bufci,

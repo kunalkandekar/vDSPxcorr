@@ -288,7 +288,7 @@ int xcr_prep_template(XCORR_REAL *xcorr, float *samples1, int nsamples1) {
         //internal buffers not allocated!
         return -1;
     }
-    if(xcr_prep_samples(xcorr, samples1, nsamples1, xcorr->bufxr, xcorr->bufxi, true, 0) < 0) {
+    if(xcr_prep_samples(xcorr, samples1, nsamples1, xcorr->bufxr, xcorr->bufxi, true) < 0) {
         return -1;
     }
     xcorr->N->realp = xcorr->bufxr;
@@ -302,7 +302,7 @@ int xcr_xcorr_template_with(XCORR_REAL *xcorr, float *samples2, int nsamples2, f
         //internal buffers not allocated!
         return -1;
     }
-    if(xcr_prep_samples(xcorr, samples2, nsamples2, xcorr->bufyr, xcorr->bufyi, false, 0) < 0) {
+    if(xcr_prep_samples(xcorr, samples2, nsamples2, xcorr->bufyr, xcorr->bufyi, false) < 0) {
         return -1;
     }
     
@@ -316,6 +316,7 @@ int xcr_xcorr_template_with(XCORR_REAL *xcorr, float *samples2, int nsamples2, f
 }
 
 // xcorr arbitrary samples using internal buffers
+// coeffs must be at least xcr_get_buf_size long
 int xcr_xcorr(XCORR_REAL *xcorr,
               float *samples1, int nsamples1,
               float *samples2, int nsamples2,
@@ -329,10 +330,22 @@ int xcr_xcorr(XCORR_REAL *xcorr,
 //int normalizedCrossCorrelateWithHaystack(float * x, int lx, float *c, int lc);
 
 // More efficient methods using pre-zeroed buffers and zero-copy
+// coeffs must be at least xcr_get_buf_size long
 int xcr_prep_samples(XCORR_REAL *xcorr,
                      float *samples1, int nsamples1,
                      float *bufr, float *bufi,
-                     bool conj, int zerocopy) {
+                     bool conj) {
+    return xcr_prep_samplesz(xcorr,
+                             samples1, nsamples1,
+                             bufr, bufi,
+                             conj, (xcorr->buf == NULL));
+}
+
+// coeffs must be at least xcr_get_buf_size long
+int xcr_prep_samplesz(XCORR_REAL *xcorr,
+                      float *samples1, int nsamples1,
+                      float *bufr, float *bufi,
+                      bool conj, int zerocopy) {
     if(nsamples1 > xcorr->max_samples_in) {
         return -1;
     }
