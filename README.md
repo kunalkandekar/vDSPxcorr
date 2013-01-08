@@ -1,7 +1,7 @@
-    			     vDSPxcorr
-    			     =========
-		      
-		          Kunal Kandekar
+vDSPxcorr
+=========
+
+- Kunal Kandekar
 
 High performance FFT-based cross-correlation for C/Objective-C/C++ on iOS and 
 OSX using the Accelerate framework.
@@ -17,7 +17,7 @@ the Inverse Fourier Transform of the product of the Fourier Transform of one and
 the complex conjugate of the Fourier Transform of the other. (Remember that the
 FT, even for real signals, is a complex-valued vector.) That is:
 
-XCORR(A, B) = IFFT( FFT(A) * CONJ( FFT(B) ) )
+    XCORR(A, B) = IFFT( FFT(A) * CONJ( FFT(B) ) )
 
 As FFT is a O(N*LogN) operation, there is potential for further speed up over the 
 O(N^2) vDSP_conv function, and this project provides an FFT-based implementation 
@@ -42,6 +42,6 @@ performance and ease of use. I still need to figure out exactly how small
 Currently, this is only implemented for real signals.
 
 
-[1] http://stackoverflow.com/questions/13809552/how-to-check-if-vdsp-function-runs
-    -scalar-or-simd-on-neon
+[1] http://stackoverflow.com/questions/13809552/how-to-check-if-vdsp-function-runs-scalar-or-simd-on-neon
+
 [2] Verification needed; benchmarks coming soon. 
